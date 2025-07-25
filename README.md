@@ -71,7 +71,40 @@ void setup() {
   Serial.println(lidos.nome);
 }
 ```
+⚠️ Atenção ao uso de endereços na Flash SPI
+Quando você grava dados na memória Flash usando esta biblioteca, os dados são salvos byte a byte a partir do endereço que você especificar. Isso significa que não basta escolher endereços aleatórios ou sequenciais manualmente sem considerar o tamanho real dos dados gravados.
 
+📌 Exemplo prático:
+Se você gravar uma estrutura no endereço 0x000000, o próximo endereço disponível para gravação depende do tamanho total da estrutura anterior:
+```cpp
+struct __attribute__((packed)) Config {
+  uint8_t modo;        // 1 byte
+  uint16_t tempo;      // 2 bytes
+  float valor;         // 4 bytes
+}; // Total = 7 bytes
+```
+Neste caso, a próxima gravação não deve começar em 0x000001, 0x000002, etc., pois isso sobrescreveria parte dos dados anteriores.
+
+O endereço correto para o próximo bloco seria:
+```
+0x000000 + sizeof(Config) = 0x000007
+```
+❌ O que pode dar errado
+Se você começar a gravar outra estrutura em um endereço mal calculado, você pode:
+
+Corromper dados anteriores
+
+Ler dados truncados ou inválidos
+
+Ter comportamento imprevisível no seu código
+
+✅ Como fazer certo
+Sempre calcule os endereços usando sizeof():
+```cpp
+#define ADDR_CONFIG   0x000000
+#define ADDR_LOG1     (ADDR_CONFIG + sizeof(Config))
+#define ADDR_LOG2     (ADDR_LOG1 + sizeof(Log))
+```
 ---
 
 ## 🧠 Recursos
