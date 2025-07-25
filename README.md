@@ -32,10 +32,10 @@ Ela oferece leitura e gravação de bytes e structs diretamente na flash, como s
 
 | Flash | STM32 / Arduino | Descrição |
 |-------|------------------|-----------|
-| CS    | Qualquer pino    | Chip Select (ex: PA4) |
-| MISO  | SPI MISO         | Ex: PA6 (STM32), D12 (Uno) |
-| MOSI  | SPI MOSI         | Ex: PA7 (STM32), D11 (Uno) |
-| SCK   | SPI SCK          | Ex: PA5 (STM32), D13 (Uno) |
+| CS    | Qualquer pino    | Chip Select (ex: PB0) |
+| MISO  | SPI MISO         | Ex: PB4 (STM32 F4), D12 (Uno) |
+| MOSI  | SPI MOSI         | Ex: PB5 (STM32 F4), D11 (Uno) |
+| SCK   | SPI SCK          | Ex: pb3 (STM32 F4), D13 (Uno) |
 | VCC   | 3.3V             | Não use 5V! |
 | GND   | GND              | Terra comum |
 
