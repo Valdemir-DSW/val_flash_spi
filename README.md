@@ -21,6 +21,12 @@ Ela oferece leitura e gravação de bytes e structs diretamente na flash, como s
 
 ## 🚀 Instalação
 
+Pode baixar diretamente pelo gerenciador de bibliotecas.
+
+<img width="258" height="609" alt="image" src="https://github.com/user-attachments/assets/de19242c-dfc6-4b62-b497-3bd6c757d34c" />
+
+ou manual
+
 1. Baixe o arquivo `val_flash_spi.zip`
 2. No Arduino IDE, vá em: `Sketch > Incluir Biblioteca > Adicionar Biblioteca .ZIP...`
 3. Selecione o arquivo `.zip` baixado
